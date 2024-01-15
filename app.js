@@ -11,7 +11,7 @@ let results = 0;
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div');
   grid.appendChild(square);
-};
+}
 
 const squares = Array.from(document.querySelectorAll('.grid div'));
 
@@ -25,17 +25,17 @@ function draw() {
   for (let i = 0; i < alienInvaders.length; i++) {
     if (!aliensRemoved.includes(i)) {
       squares[alienInvaders[i]].classList.add('invader');
-    };
-  };
-};
+    }
+  }
+}
 
 draw();
 
 function remove() {
   for (let i = 0; i < alienInvaders.length; i++) {
     squares[alienInvaders[i]].classList.remove('invader');
-  };
-};
+  }
+}
 
 squares[currentShooterIndex].classList.add('shooter');
 
@@ -48,9 +48,9 @@ function moveShooter(e) {
     case 'ArrowRight':
       if (currentShooterIndex % width < width - 1) currentShooterIndex += 1;
       break
-  };
+  }
   squares[currentShooterIndex].classList.add('shooter');
-};
+}
 document.addEventListener('keydown', moveShooter);
 
 function moveInvaders() {
@@ -63,40 +63,40 @@ function moveInvaders() {
       alienInvaders[i] += width + 1;
       direction = -1;
       goingRight = false;
-    };
-  };
+    }
+  }
 
   if (leftEdge && !goingRight) {
     for (let i = 0; i < alienInvaders.length; i++) {
       alienInvaders[i] += width - 1;
       direction = 1;
       goingRight = true;
-    };
-  };
+    }
+  }
 
   for (let i = 0; i < alienInvaders.length; i++) {
     alienInvaders[i] += direction;
-  };
+  }
 
   draw()
 
   if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
     resultsDisplay.innerHTML = "GAME OVER!";
     clearInterval(invadersId);
-  };
+  }
 
   for (let i = 0; i < alienInvaders.length; i++) {
     if(alienInvaders[i] > squares.length) {
       resultsDisplay.innerHTML = "GAME OVER!";
       clearInterval(invadersId);
-    };
-  };
+    }
+  }
 
   if (aliensRemoved.length === alienInvaders.length) {
     resultsDisplay.innerHTML = "YOU WON!";
     clearInterval(invadersId);
-  };
-};
+  }
+}
 
 invadersId = setInterval(moveInvaders, 500);
 
@@ -120,13 +120,13 @@ function shoot(e) {
       aliensRemoved.push(alienRemoved);
       results++;
       resultsDisplay.innerHTML = results;
-    };
-  };
+    }
+  }
 
   switch(e.key) {
     case 'ArrowUp':
       laserId = setInterval(moveLaser, 100);
-  };
-};
+  }
+}
 
-document.addEventListener('keydown', shoot)
+document.addEventListener('keydown', shoot);
